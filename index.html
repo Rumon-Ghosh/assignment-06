@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Green Earth</title>
+
+  <!-- tailwind & daisyUI -->
+   <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+  <!-- google fonts -->
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+  
+    <!-- custom css -->
+     <link rel="stylesheet" href="./styles/style.css">
+
+</head>
+<body>
+  <!-- header nav section -->
+  <header class="bg-[#15803D]">
+   <nav class="flex flex-col gap-5 md:flex-row items-center justify-around py-5">
+    <div id="nav-left">
+      <h2 class="text-xl font-bold text-white">Green Earth</h2>
+    </div>
+    <ul id="nav-middle" class="flex gap-7 text-white">
+      <li><a class="font-medium" href="#">About</a></li>
+      <li><a class="font-medium" href="#">Gallery</a></li>
+      <li><a class="font-medium" href="#">Plant a Tree</a></li>
+    </ul>
+    <div id="nav-right">
+      <button class="btn btn-warning rounded-3xl text-[#15803D]">Plan a Tree</button>
+    </div>
+   </nav>
+  </header>
+  
+  <main>
+    <!-- banner section -->
+     <section class="bg-[#CFF0DC]">
+      <div class="flex flex-col md:flex-row justify-between items-center max-w-11/12 mx-auto pt-5">
+          <div id="banner-left" class="flex-1 hidden md:block">
+            <img class="w-fit" src="./assets/hero-leaf1.png">
+          </div>
+          <div id="banner-middle" class="flex-2 flex flex-col items-center space-y-3">
+            <h1 class="font-bold text-4xl text-[#1F2937] text-center">Plant a Tree, Grow a Future</h1>
+            <p class="text-center text-[#1F2937]">Join our mission to plant 1 million trees and make the Earth greener for future generations.</p>
+            <button class="btn btn-warning rounded-3xl text-[#15803D]">Get Involved</button>
+          </div>
+          <div id="banner-right" class="flex-1">
+            <img class="w-fit" src="./assets/hero-leaf2.png" alt="">
+          </div>
+      </div>
+     </section>
+
+     <!-- trees section -->
+     <section class="bg-[#F0FDF4] pt-10 md:pt-[100px]">
+        <div id="" class="max-w-11/12 mx-auto">
+            <h2 class="text-[32px] font-semibold text-[#1F2937] text-center mb-7">Choose Your Trees</h2>
+            <div id="card-main" class="w-full grid md:grid-cols-6 gap-5">
+
+              <div class="col-span-1 w-full">
+                <h4 class="font-semibold text-xl mb-5">Categories</h4>
+                <div id="card-Categories" class="grid grid-cols-3 gap-3 md:grid-cols-1">
+
+                </div>
+              </div>
+
+              <div id="card-container" class="md:col-span-4 grid md:grid-cols-3 gap-4">
+                  
+              </div>
+
+              <div class="col-span-1 bg-white rounded-xl p-2 flex flex-col">
+                <h5 class="font-semibold text-lg mb-3">Your Card</h5>
+                <div id="card-history" class="space-y-2">
+                </div>
+                <p id="total-container" class="mt-2 ml-auto border-t border-t-gray-300 hidden font-semibold text-lg">Total: $<span id="total-amount">0</span></p>
+              </div>
+
+            </div>
+        </div>
+     </section>
+  </main>
+
+   <!-- modal -->
+    <dialog id="display_details" class="modal modal-bottom sm:modal-middle">
+      <div class="modal-box">
+        <div id="tree-details" class="space-y-2">
+        
+        </div>
+        <div class="modal-action">
+          <form method="dialog">
+            <!-- if there is a button in form, it will close the modal -->
+            <button class="btn">Close</button>
+          </form>
+        </div>
+      </div>
+    </dialog>
+  <script src="./script.js"></script>
+</body>
+</html>
