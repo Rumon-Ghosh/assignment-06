@@ -52,9 +52,9 @@ const displayTrees = (trees) => {
   cardContainer.innerHTML = "";
   for (const tree of trees) {
     cardContainer.innerHTML += `
-        <div id="${tree.id}" class="bg-white p-3 rounded-lg space-y-2 shadow-lg flex flex-col">
+        <div id="${tree.id}" class="bg-white p-3 rounded-lg space-y-3 shadow-lg flex flex-col">
                     <div class="">
-                      <img class="rounded-lg max-h-40 w-full" src="${tree.image}" alt="">
+                      <img class="rounded-lg max-h-40 w-full" src="${tree.image}" alt="tree img"/>
                     </div>
                     <div class="mt-auto space-y-2">
                       <h3 class="font-semibold text-[#1F2937]">${tree.name}</h3>
@@ -74,7 +74,7 @@ const displayTrees = (trees) => {
 const displayCategories = (categories) => {
   categories.forEach(category => {
     cardCategories.innerHTML += `
-      <button id="category-btn-${category.id}" onclick="loadTrees(${category.id})" class="block btn hover:bg-[#04ed0040] w-full text-left category-Button">${category.category_name}</button>
+      <button id="category-btn-${category.id}" onclick="loadTrees(${category.id})" class="block bg-white p-1 rounded-lg hover:bg-[#04ed0040] w-full text-left category-Button">${category.category_name}</button>
     `
   });
 }
@@ -84,6 +84,7 @@ cardContainer.addEventListener('click', (event) => {
     const treeName = event.target.parentNode.children[0].innerText;
     const treePrice = event.target.parentNode.children[2].children[1].children[0].innerText;
     const treeId = event.target.parentNode.parentNode.id
+    alert(`${treeName} has been added to the card.`);
     cardArray.push({
       title: treeName,
       price: Number(treePrice),
