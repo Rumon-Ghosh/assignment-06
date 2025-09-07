@@ -6,6 +6,16 @@ const total = document.getElementById("total-amount");
 let cardArray = [];
 let cardTotal = 0;
 
+const manageSpinner = (status) => {
+  if (status == true) {
+    document.getElementById("spinner").classList.remove("hidden");
+    document.getElementById("card-section").classList.add("hidden");
+  } else {
+    document.getElementById("card-section").classList.remove("hidden");
+    document.getElementById("spinner").classList.add("hidden");
+  }
+}
+
 const loadCategories = () => {
   fetch("https://openapi.programming-hero.com/api/categories")
     .then(res => res.json())
@@ -13,6 +23,7 @@ const loadCategories = () => {
 }
 
 const loadTrees = (id) => {
+  manageSpinner(true)
   fetch(`https://openapi.programming-hero.com/api/category/${id}`)
     .then(response => response.json())
     .then(data => {
@@ -29,6 +40,7 @@ const removeActive = () => {
 }
 
 const loadAllPlants = () => {
+  manageSpinner(true)
   fetch("https://openapi.programming-hero.com/api/plants")
     .then(res => res.json())
     .then(package => displayTrees(package.plants))
@@ -38,7 +50,6 @@ loadAllPlants()
 
 const displayTrees = (trees) => {
   cardContainer.innerHTML = "";
-
   for (const tree of trees) {
     cardContainer.innerHTML += `
         <div id="${tree.id}" class="bg-white p-3 rounded-lg space-y-2 shadow-lg flex flex-col">
@@ -47,7 +58,7 @@ const displayTrees = (trees) => {
                     </div>
                     <div class="mt-auto space-y-2">
                       <h3 class="font-semibold text-[#1F2937]">${tree.name}</h3>
-                    <p class="text-sm text-[#71717A]">${tree.description}</p>
+                    <p class="text-sm text-[#71717A] line-clamp-2">${tree.description}</p>
                     <div class="flex items-center justify-between">
                       <span class="bg-gray-100 p-1 rounded-xl">${tree.category}</span>
                       <p class="font-semibold">$<span id="tree-price">${tree.price}</span></p>
@@ -57,6 +68,7 @@ const displayTrees = (trees) => {
                   </div>
     `
   }
+  manageSpinner(false)
 }
 
 const displayCategories = (categories) => {
@@ -127,4 +139,3 @@ addToCardContainer.addEventListener('click', (e) => {
     total.innerText = cardTotal;
   }
 })
-
