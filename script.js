@@ -45,7 +45,7 @@ const loadAllPlants = () => {
     .then(res => res.json())
     .then(package => {
       removeActive();
-      // document.getElementById("category-btn-all").classList.add("active");
+      document.getElementById("category-btn-all").classList.add("active");
       displayTrees(package.plants);
     })
 }
