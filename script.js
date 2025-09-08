@@ -52,6 +52,7 @@ const loadAllPlants = () => {
 
 
 const displayTrees = (trees) => {
+  manageSpinner(false);
   cardContainer.innerHTML = "";
   for (const tree of trees) {
     cardContainer.innerHTML += `
@@ -71,11 +72,11 @@ const displayTrees = (trees) => {
                   </div>
     `
   }
-  manageSpinner(false)
+  
 }
 
 const displayCategories = (categories) => {
-
+  manageSpinner(false);
   cardCategories.innerHTML = `
     <button id="category-btn-all" onclick="loadAllPlants()" 
       class="block bg-white p-1 rounded-lg hover:bg-[#04ed0040] w-full text-left category-Button active">
@@ -129,7 +130,6 @@ cardContainer.addEventListener('click', (event) => {
 })
 
 const displayDetails = (details) => {
-  console.log(details)
   treeDetailsContainer.innerHTML = `
   <h3 class="text-lg font-bold">${details.name}</h3>
     <img class="max-h-60 w-full rounded-lg" src="${details.image}" />
