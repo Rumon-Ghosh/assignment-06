@@ -45,11 +45,12 @@ const loadAllPlants = () => {
     .then(res => res.json())
     .then(package => {
       removeActive();
-      document.getElementById("category-btn-all").classList.add("active");
+      // document.getElementById("category-btn-all").classList.add("active");
       displayTrees(package.plants);
     })
 }
 
+loadAllPlants()
 
 const displayTrees = (trees) => {
   manageSpinner(false);
@@ -92,6 +93,7 @@ const displayCategories = (categories) => {
 }
 
 cardContainer.addEventListener('click', (event) => {
+  manageSpinner(false)
   if (event.target.localName === "button") {
     const treeName = event.target.parentNode.children[0].innerText;
     const treePrice = event.target.parentNode.children[2].children[1].children[0].innerText;
@@ -130,6 +132,7 @@ cardContainer.addEventListener('click', (event) => {
 })
 
 const displayDetails = (details) => {
+  manageSpinner(false)
   treeDetailsContainer.innerHTML = `
   <h3 class="text-lg font-bold">${details.name}</h3>
     <img class="max-h-60 w-full rounded-lg" src="${details.image}" />
