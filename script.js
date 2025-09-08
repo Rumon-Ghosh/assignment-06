@@ -43,10 +43,13 @@ const loadAllPlants = () => {
   manageSpinner(true)
   fetch("https://openapi.programming-hero.com/api/plants")
     .then(res => res.json())
-    .then(package => displayTrees(package.plants))
+    .then(package => {
+      removeActive();
+      document.getElementById("category-btn-all").classList.add("active");
+      displayTrees(package.plants);
+    })
 }
 
-loadAllPlants()
 
 const displayTrees = (trees) => {
   cardContainer.innerHTML = "";
@@ -54,7 +57,7 @@ const displayTrees = (trees) => {
     cardContainer.innerHTML += `
         <div id="${tree.id}" class="bg-white p-3 rounded-lg space-y-3 shadow-lg flex flex-col">
                     <div class="">
-                      <img class="rounded-lg max-h-40 w-full" src="${tree.image}" alt="tree img"/>
+                      <img class="rounded-lg max-h-52 md:max-h-40 w-full" src="${tree.image}" alt="tree img"/>
                     </div>
                     <div class="mt-auto space-y-2">
                       <h3 class="font-semibold text-[#1F2937]">${tree.name}</h3>
@@ -72,6 +75,14 @@ const displayTrees = (trees) => {
 }
 
 const displayCategories = (categories) => {
+
+  cardCategories.innerHTML = `
+    <button id="category-btn-all" onclick="loadAllPlants()" 
+      class="block bg-white p-1 rounded-lg hover:bg-[#04ed0040] w-full text-left category-Button active">
+      All Plants
+    </button>
+  `;
+
   categories.forEach(category => {
     cardCategories.innerHTML += `
       <button id="category-btn-${category.id}" onclick="loadTrees(${category.id})" class="block bg-white p-1 rounded-lg hover:bg-[#04ed0040] w-full text-left category-Button">${category.category_name}</button>
@@ -129,9 +140,6 @@ const displayDetails = (details) => {
   document.getElementById("display_details").showModal()
 } 
 
-loadCategories();
-
-
 addToCardContainer.addEventListener('click', (e) => {
   if (e.target.tagName === 'BUTTON') {
     const itemPrice = Number(e.target.parentNode.children[0].children[1].children[0].innerText)
@@ -140,3 +148,6 @@ addToCardContainer.addEventListener('click', (e) => {
     total.innerText = cardTotal;
   }
 })
+
+loadCategories();
+loadAllPlants()
